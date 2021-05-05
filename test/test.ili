@@ -1,0 +1,20 @@
+INTERLIS 2.3;
+
+CONTRACTED MODEL IlivalidatorAreaExtension
+AT "mailto:crud3_rt@localhost"
+VERSION "0.0.1"  =
+    IMPORTS GeometryCHLV95_V1;
+    FUNCTION areaCalculation(geometry : OBJECTS OF ANYCLASS; stroke : NUMERIC):NUMERIC;
+    TOPIC test =
+        CLASS Example_Areas =
+            Geometry : MANDATORY GeometryCHLV95_V1.Area;
+            Name : TEXT;
+            MANDATORY CONSTRAINT areaCalculation(Geometry, 0.001) > 0.001;
+        END Example_Areas;
+        CLASS Example_Multisurface =
+            Geometry : MANDATORY GeometryCHLV95_V1.MultiSurface;
+            Name : TEXT;
+            MANDATORY CONSTRAINT areaCalculation(Geometry, 0.001) > 0.001;
+        END Example_Multisurface;
+    END test;
+END IlivalidatorAreaExtension.
